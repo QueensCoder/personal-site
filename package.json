@@ -1,5 +1,5 @@
 {
-  "name": "boilermaker",
+  "name": "personal_site",
   "version": "2.0.0",
   "description": "Some boilerplate code to get you started - get shakin'!",
   "engines": {
@@ -38,10 +38,10 @@
       "git add"
     ]
   },
-  "author": "Fullstack Academy of Code",
+  "author": "Queens Coder",
   "license": "MIT",
   "dependencies": {
-    "axios": "^0.18.0",
+    "axios": "^0.19.0",
     "compression": "^1.7.3",
     "connect-session-sequelize": "^6.0.0",
     "express": "^4.16.4",
