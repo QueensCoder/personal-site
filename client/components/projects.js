@@ -1,7 +1,9 @@
 import React from 'react';
+import {connect} from 'react-redux';
 import {array} from 'prop-types';
 
-const Project = props => {
+// export for testing
+export const Projects = props => {
   const {projs} = props;
   return (
     <div>
@@ -10,12 +12,17 @@ const Project = props => {
   );
 };
 
-export default Project;
+const mapState = state => {
+  return {};
+};
+
+// export store connected to component
+export default connect(mapState)(Projects);
 
 /**
  * Prop types
  */
 
-Project.propTypes = {
+Projects.propTypes = {
   projs: array
 };

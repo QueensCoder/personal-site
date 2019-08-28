@@ -5,6 +5,8 @@ import {connect} from 'react-redux';
 /**
  * COMPONENT
  */
+
+//  export component without store connection in order to test the component
 export const UserHome = props => {
   const {email} = props;
 
