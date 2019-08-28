@@ -1,6 +1,5 @@
 import React from 'react';
 import {array} from 'prop-types';
-import {link} from 'fs-extra';
 
 const Project = props => {
   const {projs} = props;
