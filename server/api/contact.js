@@ -14,7 +14,7 @@ router.get('/', async (req, res, next) => {
 router.post('/', async (req, res, next) => {
   try {
     const createdContact = await Contact.create(req.body);
-    res.json(createdContact);
+    res.status(201).json(createdContact);
   } catch (err) {
     console.log(err);
   }

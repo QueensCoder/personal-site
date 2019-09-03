@@ -13,6 +13,9 @@ describe('Contact routes', () => {
     const message = 'Hello world';
     const email = 'ozal@aol.com';
 
+    const postEmail = 'test@aol.com';
+    const postMessage = 'this is a test';
+
     beforeEach(() => {
       return Contact.create({
         email,
@@ -28,6 +31,19 @@ describe('Contact routes', () => {
       expect(res.body).to.be.an('array');
       expect(res.body[0].message).to.be.equal(message);
       expect(res.body[0].email).to.be.equal(email);
+    });
+
+    it('POST /api/contact', async () => {
+      const res = await request(app)
+        .post('/api/contact')
+        .send({email: postEmail, message: postMessage})
+        .set('Accept', 'application/json')
+        .expect('Content-Type', /json/)
+        .expect(201);
+
+      expect(res.body).to.be.an('object');
+      expect(res.body.email).to.be.equal(postEmail);
+      expect(res.body.message).to.be.equal(postMessage);
     });
   });
 });
