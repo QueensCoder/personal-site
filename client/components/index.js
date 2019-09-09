@@ -7,4 +7,5 @@ export * from './navbar';
 export * from './user-home';
 export * from './projects';
 export * from './contact';
+export * from './contactList';
 export {Login, Signup} from './auth-form';

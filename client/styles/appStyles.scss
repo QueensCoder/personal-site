@@ -1,0 +1,11 @@
+@import 'colors';
+$font: veranda, sans-serif;
+
+body {
+  font: $font;
+  background-color: $themeColor-Light;
+  h1,
+  h2 {
+    color: $themeColor-Dark;
+  }
+}
