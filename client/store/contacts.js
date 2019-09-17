@@ -27,7 +27,7 @@ export const fetchContacts = () => {
 export const createContact = contact => {
   return async function thunk(dispatch) {
     try {
-      const {data} = axios.post('/api/contact', contact);
+      await axios.post('/api/contact', contact);
     } catch (err) {
       console.log(err);
     }

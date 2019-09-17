@@ -1,7 +1,7 @@
 /* global describe beforeEach afterEach it */
 
 import {expect} from 'chai';
-import {fetchContacts} from '../';
+import {fetchContacts, createContact} from '../';
 import axios from 'axios';
 import MockAdapter from 'axios-mock-adapter';
 import configureMockStore from 'redux-mock-store';
@@ -48,9 +48,14 @@ describe('thunk creators', () => {
     });
   });
 
-  describe('post contacts', () => {
-    it('postContacts: eventually dispatches the CREATE CONTACT action', async () => {
-      const fakeContacts = {email: 'ozal', message: 'hello'};
-    });
-  });
+  // describe('post contacts', () => {
+  //   it('postContacts: eventually dispatches the CREATE CONTACT action', async () => {
+  //     const fakeContact = {email: 'ozal', message: 'hello'};
+  //     mockAxios.onPost('/api/contact').reply(201, fakeContact);
+  //     await store.dispatch(createContact(fakeContact));
+
+  //     const actions = store.getActions();
+
+  //   });
+  // });
 });
