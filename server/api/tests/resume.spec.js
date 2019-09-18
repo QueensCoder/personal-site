@@ -9,7 +9,7 @@ describe('Resume routes', () => {
         .get('/api/resume')
         .expect(200);
 
-      //the response type should be as pdf file when this route is hit
+      //the response type should be a pdf file when this route is hit
       expect(res.type).to.be.equal('application/pdf');
     });
   });

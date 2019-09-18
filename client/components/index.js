@@ -8,4 +8,5 @@ export * from './user-home';
 export * from './projects';
 export * from './contact';
 export * from './contactList';
+export {default as Resume} from './resume';
 export {Login, Signup} from './auth-form';
