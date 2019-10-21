@@ -2,10 +2,10 @@ import {expect} from 'chai';
 import React from 'react';
 import enzyme, {shallow} from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
-import {Projects} from '../projects';
+import {Projects} from '../';
 
-const adap = new Adapter();
-enzyme.configure({adap});
+const adapt = new Adapter();
+enzyme.configure({adapt});
 
 describe('Projects', () => {
   let projects;

@@ -1,5 +1,4 @@
 import React from 'react';
-import axios from 'axios';
 import download from 'downloadjs';
 
 const Resume = () => {
@@ -8,7 +7,8 @@ const Resume = () => {
       <button
         type="button"
         onClick={async () => {
-          const res = await fetch('/api/resume'); //axios.get('/api/resume');
+          console.log('got clicked');
+          const res = await fetch('/api/resume');
           const blob = await res.blob();
           download(blob, 'test.pdf');
         }}
