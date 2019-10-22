@@ -1,30 +1,32 @@
 language: node_js
 node_js:
-  - node # uses most recent stable node version
+- node
 services:
-  - postgresql # starts up postgres
+- postgresql
 addons:
-  postgresql: '9.6' # highest available postgres version on Travis
-dist: trusty # uses trusty environment
-sudo: false # when on trusty, uses Docker containers for speed
+  postgresql: '9.6'
+dist: trusty
+sudo: false
 notifications:
   email:
-    on_success: change # default: change (only when going from broken to fixed)
-    on_failure: always # default: always (which is annoying, as it should be)
+    on_success: change
+    on_failure: always
 install:
-  - npm ci # faster, goes only from package-lock
+- npm ci
 before_script:
-  - psql -c 'create database "personal_site";' -U postgres # remember to change this name if you change it elsewhere (e.g. package.json)
-  - psql -c 'create database "personal_site-test";' -U postgres
+- psql -c 'create database "personal_site";' -U postgres
+- psql -c 'create database "personal_site-test";' -U postgres
 script:
-  - npm test # test the code
-  - npm run build-client # make the bundle
-
+- npm test
+- npm run build-client
 before_deploy:
-  - rm -rf node_modules # omit from the tarball, since we skip cleanup
+- rm -rf node_modules
 deploy:
-  skip_cleanup: true # prevents travis from deleting the build
+  skip_cleanup: true
   provider: heroku
-  app: ozalkhan # see README
+  app: ozalkhan
   api_key:
-    secure: 'pNCBRD1n68tF+qoKzHbcm5hXuq/YzesONkKG9r/HHU0T866PVMR6ab7UsqIxYMPFPtE0V7+tRpqcPi7GZzLLiZG0VyMeAuJ+oM9W+WwsTegC1g8a13mFB1m44Iez7sLRFKvPBqEIk/cs4n0j9ZApGtiWpZcMgqf56BmKbTmb0RQUoq0L2nEnEB2DquP2jmXmYr6Wg2JwA7nIYYvY02HIDQi/i0kSOoLd1LwMeaZnclFKftoSBJdASw/mv7KiPjjEl8e8t1GGOJ2ggtfETv8hWxmhnDKVbbhhe2arNuIUPCRhBeYznaodtC3SYTnDqXYaU+qwCQiGrrYtyfIA72ZN6HsSaarsiQjjcgR5rckNpfFQpmlr/+LZYvUZipEcPp28z5QPU/jphjhvQa6n9rxm0sKf9GcbAiqoHMZBXVuo4DaIpzoqrAVUfP0ituygIysleU/q2gU70mwEGtzU/+QTqpKZF5XRcWKb7gBYO41LEzr7iyvFrXOQUUzE32/TcXEotbku1fEQLISGcX099NssPrndRD2OwEcBehurOBzR5gL24ii3UZZaYImMFWBNbVxBc2UdzR3rmi09PLnxgyd+HIWS+bs+iiOstOp1BMa4MOd0BRFcTnDFW4ZX4NkQx6PNqZYPBM8sUhhnokEv7N9M2NiRZ6X1VeHYq/JBUePRqmo='
+    secure: pNCBRD1n68tF+qoKzHbcm5hXuq/YzesONkKG9r/HHU0T866PVMR6ab7UsqIxYMPFPtE0V7+tRpqcPi7GZzLLiZG0VyMeAuJ+oM9W+WwsTegC1g8a13mFB1m44Iez7sLRFKvPBqEIk/cs4n0j9ZApGtiWpZcMgqf56BmKbTmb0RQUoq0L2nEnEB2DquP2jmXmYr6Wg2JwA7nIYYvY02HIDQi/i0kSOoLd1LwMeaZnclFKftoSBJdASw/mv7KiPjjEl8e8t1GGOJ2ggtfETv8hWxmhnDKVbbhhe2arNuIUPCRhBeYznaodtC3SYTnDqXYaU+qwCQiGrrYtyfIA72ZN6HsSaarsiQjjcgR5rckNpfFQpmlr/+LZYvUZipEcPp28z5QPU/jphjhvQa6n9rxm0sKf9GcbAiqoHMZBXVuo4DaIpzoqrAVUfP0ituygIysleU/q2gU70mwEGtzU/+QTqpKZF5XRcWKb7gBYO41LEzr7iyvFrXOQUUzE32/TcXEotbku1fEQLISGcX099NssPrndRD2OwEcBehurOBzR5gL24ii3UZZaYImMFWBNbVxBc2UdzR3rmi09PLnxgyd+HIWS+bs+iiOstOp1BMa4MOd0BRFcTnDFW4ZX4NkQx6PNqZYPBM8sUhhnokEv7N9M2NiRZ6X1VeHYq/JBUePRqmo=
+env:
+  global:
+    secure: nWGjVhbDRhixMVDUScQBiZpaJPgtCpug54WEJGalNlfxW8/aQDoabkmm9tlNor/scI5C4m13lIwHt5bcvkdO6U3n5dAqHJ7zxyGldP67RYwanl0hfPE9A/ZF7VHjBq0qyGp5Pz/s/dKQiTelhXG4djIfvtQ0LLLjGFY6dg8nlIJsxjBtQQ43P9XrNoTwOFZncMRSkrABZp9qlH41kZ8flaRSJwci3b8CuD6Ab3xxF1k7aiM4IzMSz1fCEjGDOiB+gqHARZaGQbKolSF3l0O6TeMIgWRGTe6j5V7vp8eL+bzlC4pvbj4iAAwe0c5FKtAOYXki/c3F9c7dNuc3FQRRBwzY1Palrx7ZIr5mlPpaUSAHrWKyN4zr96o6irzJEHvQwHx6AQvYBuYPY19iC6enJwz2gvOx7WQK5aWkrpMMmv+2RuFcCRu+ELhO5CPlPbNZXvhbuRWsRmJjOwOfELNbkHZq6GawdZ54vAH3eZVpe91V2icnnHSA40+h8vwYeLJy4MoVK3uwZifV+TWu3ldFY+j58c6xD1bUabwhgIqGZ5OumKYVMk2pPu1ajk/TCXqvVw9AQw7uls8IS6riohgPKT08ATEt1La8ag8wPoHoFczglWKLltwmzoFLmefBqHI7a+ychdZgoHE07hQ92DYngEWgHD4Y5YFlTueSk6QCfqU=
